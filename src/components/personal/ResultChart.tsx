@@ -1,10 +1,7 @@
 import { useRef, useEffect } from 'react'
 import Chart, { ChartConfiguration } from 'chart.js/auto'
 import React from 'react'
-import {
-  useDisLikeQuery,
-  usePreferenceQuery,
-} from '@/query/personal/useQueryPersonal'
+import { usePreferenceQuery } from '@/query/personal/useQueryPersonal'
 
 import type { ResultChartProps } from '@/types/personal/type'
 
@@ -15,13 +12,11 @@ const ResultChart: React.FC<ResultChartProps> = ({ userChar }) => {
   const chartInstance = useRef<Chart | null>(null)
 
   const preference = usePreferenceQuery(mbtiStatus)
-  const dislike = useDisLikeQuery(mbtiStatus)
 
   useEffect(() => {
-    if (preference && dislike) {
+    if (preference) {
       const labels = Object.keys(preference)
       const preferenceData = Object.values(preference)
-      const dislikeData = Object.values(dislike)
 
       if (chartRef.current) {
         if (chartInstance.current) {
@@ -41,14 +36,6 @@ const ResultChart: React.FC<ResultChartProps> = ({ userChar }) => {
                   borderColor: 'green',
                   borderWidth: 3,
                   pointBackgroundColor: 'rgb(56, 238, 65)',
-                  pointBorderColor: '#fff',
-                },
-                {
-                  label: '장르별 음악 비선호도',
-                  data: dislikeData,
-                  borderColor: 'red',
-                  borderWidth: 3,
-                  pointBackgroundColor: 'rgb(255, 64, 64)',
                   pointBorderColor: '#fff',
                 },
               ],
@@ -74,6 +61,7 @@ const ResultChart: React.FC<ResultChartProps> = ({ userChar }) => {
                 },
               },
               responsive: false,
+              maintainAspectRatio: false,
               plugins: {
                 legend: {
                   labels: {
@@ -84,8 +72,8 @@ const ResultChart: React.FC<ResultChartProps> = ({ userChar }) => {
                   },
                 },
                 title: {
-                  display: true,
-                  text: '당신의 퍼스널 뮤직 진단 결과',
+                  display: false,
+
                   color: 'white',
                   font: {
                     size: 20,
@@ -98,16 +86,11 @@ const ResultChart: React.FC<ResultChartProps> = ({ userChar }) => {
         }
       }
     }
-  }, [preference, dislike, chartRef.current])
+  }, [preference, chartRef.current])
 
   return (
-    <div className=' flex justify-center pt-[15px]'>
-      <canvas
-        ref={chartRef}
-        width={400}
-        height={300}
-        style={{ backgroundColor: 'black' }}
-      />
+    <div className=' flex justify-center pt-[24px]'>
+      <canvas ref={chartRef} width={400} height={300} />
     </div>
   )
 }
