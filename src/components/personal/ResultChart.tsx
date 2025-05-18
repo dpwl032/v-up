@@ -42,7 +42,6 @@ const ResultChart: React.FC<ResultChartProps> = ({ userChar }) => {
             },
             options: {
               scales: {
-                //radar 옵션
                 r: {
                   angleLines: {
                     color: 'white',
@@ -55,9 +54,6 @@ const ResultChart: React.FC<ResultChartProps> = ({ userChar }) => {
                     font: {
                       size: 15,
                     },
-                  },
-                  ticks: {
-                    //color: 'red',
                   },
                 },
               },
