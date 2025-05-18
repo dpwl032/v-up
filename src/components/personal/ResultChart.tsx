@@ -33,15 +33,16 @@ const ResultChart: React.FC<ResultChartProps> = ({ userChar }) => {
                 {
                   label: '장르별 음악 선호도',
                   data: preferenceData,
-                  borderColor: 'green',
+                  borderColor: '#685BFF',
                   borderWidth: 3,
-                  pointBackgroundColor: 'rgb(56, 238, 65)',
+                  pointBackgroundColor: '#685BFF',
                   pointBorderColor: '#fff',
                 },
               ],
             },
             options: {
               scales: {
+                //radar 옵션
                 r: {
                   angleLines: {
                     color: 'white',
@@ -56,7 +57,7 @@ const ResultChart: React.FC<ResultChartProps> = ({ userChar }) => {
                     },
                   },
                   ticks: {
-                    color: 'blue',
+                    //color: 'red',
                   },
                 },
               },
@@ -69,14 +70,6 @@ const ResultChart: React.FC<ResultChartProps> = ({ userChar }) => {
                       size: 14,
                     },
                     color: 'white',
-                  },
-                },
-                title: {
-                  display: false,
-
-                  color: 'white',
-                  font: {
-                    size: 20,
                   },
                 },
               },
